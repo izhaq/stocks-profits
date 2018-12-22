@@ -26,7 +26,7 @@ class App {
 
   private mongoSetup(): void{
     //mongoose.Promise = global.Promise;
-    mongoose.connect(this.mongoUrl);
+    mongoose.connect(this.mongoUrl, { useNewUrlParser: true });
     let db = mongoose.connection;
     db.on('error', console.error.bind(console, 'connection error:'));
     db.once('open', function callback () {

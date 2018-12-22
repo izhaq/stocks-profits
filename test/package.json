@@ -6,7 +6,7 @@
   "scripts": {
     "start": "npm run build",
     "build": "tsc -p .",
-    "dev": "ts-node ./src/server.ts"
+    "dev": "nodemon --watch src/ --exec ts-node ./src/server.ts -e ts"
   },
   "author": "",
   "license": "ISC",
@@ -19,7 +19,9 @@
     "mongodb": "^3.1.10",
     "monk": "^6.0.6",
     "morgan": "~1.9.0",
-    "pug": "2.0.0-beta11"
+    "pug": "2.0.0-beta11",
+    "reflect-metadata": "^0.1.12",
+    "typegoose": "^5.4.1"
   },
   "devDependencies": {
     "@types/debug": "0.0.31",
