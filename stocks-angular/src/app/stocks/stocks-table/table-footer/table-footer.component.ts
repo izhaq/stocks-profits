@@ -4,10 +4,10 @@ import {Stock} from '../../../models/stock';
 
 @Component({
   selector: 'app-table-fotter',
-  templateUrl: './table-fotter.component.html',
-  styleUrls: ['./table-fotter.component.scss']
+  templateUrl: './table-footer.component.html',
+  styleUrls: ['./table-footer.component.scss']
 })
-export class TableFotterComponent implements OnInit {
+export class TableFooterComponent implements OnInit {
 
   private isEditMode = false;
   private stock: Stock;
@@ -38,7 +38,7 @@ export class TableFotterComponent implements OnInit {
   }
 
   submitRow() {
-    this.tableService.onRowAdded(this.stock);
+    this.tableService.notifyOnTableEvents('row-added', this.stock);
     this.refresh();
   }
 
@@ -47,6 +47,10 @@ export class TableFotterComponent implements OnInit {
   }
 
   onChange($event, i) {
-    this.stock.prices[i] = $event.target.value;
+    if (i === 0) {
+      this.stock.name = $event.target.value;
+    } else {
+      this.stock.prices[i - 1] = $event.target.value;
+    };
   }
 }

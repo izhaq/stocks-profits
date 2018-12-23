@@ -1,11 +1,11 @@
 :host{
+  flex: 1;
   display: flex;
-  width: 100%;
-  height: calc(100% - 80px);
+  overflow: overlay;
   .table-body-container{
-    display: flex;
-    height: 100%;
     width: 100%;
     flex-direction: column;
+    min-height: min-content;
+    display: flex;
   }
 }

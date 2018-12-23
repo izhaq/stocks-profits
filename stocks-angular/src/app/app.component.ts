@@ -13,8 +13,5 @@ export class AppComponent implements OnInit {
   constructor(private service: StocksService) {}
 
   ngOnInit() {
-  /*  this.service.addStock().subscribe((stocks: StocksResponse) => {
-      console.log(stocks);
-    });*/
   }
 }

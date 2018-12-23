@@ -1,37 +1,65 @@
-import { Injectable } from '@angular/core';
-import {Observable, Subject} from 'rxjs';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
 import {Stock} from '../models/stock';
+import {TableEventsService} from './table-events.service';
+import {TableState} from '../models/table-state';
+
+const TABLE_HEADERS = ['Stock', 'sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class StocksTableService {
 
-  private dataSource: Array<any>;
-  private tableHeaders: Array<string> = ['Stock', 'sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
-  private subject = new Subject<any>();
+    private tableState: TableState;
 
-  constructor() { }
+    constructor(private eventService: TableEventsService) {
+        this.init();
+    }
 
-  setDataSource(dataSource: Observable<any>) {
-    dataSource.subscribe((data) => {
-      this.dataSource = data.stocks;
-    });
-  }
+    init() {
+        this.tableState = new TableState();
+        this.tableState.tableHeaders = TABLE_HEADERS;
+        this.tableState.selectedRow = 0;
+        this.listenToTableEvents();
+    }
 
-  getDataSource(): Array<any> {
-    return this.dataSource;
-  }
+    listenToTableEvents() {
+        this.eventService.getMessage().subscribe((dataObject) => {
+            if (dataObject.message === 'refresh') {
+                this.setDataSource(dataObject.data);
+            }
+            if (dataObject.message === 'row-added-db') {
+                this.addNewRow(dataObject.data);
+            }
+        });
+    }
 
-  getTableHeaders() {
-    return this.tableHeaders;
-  }
+    notifyOnTableEvents(message: string, data: any) {
+        this.eventService.sendMessage(message, data);
+    }
 
-  getSubject() {
-    return this.subject.asObservable();
-  }
+    setDataSource(dataSource: Observable<any>) {
+        dataSource.subscribe((data) => {
+            this.tableState.dataSource = data.stocks;
+        });
+    }
 
-  onRowAdded(stock: Stock) {
-    this.subject.next({ newRow: stock });
-  }
+    addNewRow(dataRow: Observable<any>) {
+        dataRow.subscribe((data) => {
+            this.tableState.dataSource = data.stocks.concat(this.tableState.dataSource);
+        });
+    }
+
+    getDataSource(): Array<any> {
+        return this.tableState.dataSource;
+    }
+
+    getTableHeaders() {
+        return this.tableState.tableHeaders;
+    }
+
+    get selectedRow() {
+        return this.tableState.selectedRow;
+    }
 }

@@ -1,0 +1,8 @@
+<div class="table-row-container" (click)="onRowSelected()">
+    <div class="table-cell">
+        <div class="ellipsis">{{rowData.stock.name}}</div>
+    </div>
+    <div class="table-cell" *ngFor="let element of rowData.stock.prices; let i = index">
+        <div [ngClass]="cellMarked(i)">{{element}}</div>
+    </div>
+</div>

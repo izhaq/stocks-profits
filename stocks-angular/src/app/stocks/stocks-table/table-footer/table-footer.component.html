@@ -15,13 +15,14 @@
 </div>
 <ng-template #editTemplate>
     <div class="insert-row-container">
-        <div class="action-panel">
-            <div class="submit-row-btn" (click)="submitRow()"><i class="fas fa-check"></i></div>
-            <div class="cancle-row-btn" (click)="cancel()"><i class="fas fa-minus"></i></div>
-        </div>
+        <!--<div class="action-panel">
+
+        </div>-->
         <div class="insert-row">
-            <div class="input-container" *ngFor="let input of newRowInputs; let i = index">
-                <input (change)="onChange($event, i)">
+            <div class="cancel-row-btn" (click)="cancel()"><i class="fas fa-times"></i></div>
+            <div class="submit-row-btn" (click)="submitRow()"><i class="fas fa-check"></i></div>
+            <div class="input-container form-group" *ngFor="let input of newRowInputs; let i = index">
+                <input class="form-control" [type]="i === 0 ? 'text': 'number'" (change)="onChange($event, i)">
             </div>
         </div>
     </div>

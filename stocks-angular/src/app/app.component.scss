@@ -1,3 +1,5 @@
+
+
 :host{
   display: flex;
   width: 100%;
@@ -26,14 +28,45 @@
       display: flex;
       width: 100%;
       height: calc(100% - 60px);
+      flex-direction: column;
 
       .stocks-table-container{
         display: flex;
         width: 100%;
-        height: 50%;
+        height: 55%;
         justify-content: center;
         padding: 30px;
+      }
+
+      .chart-container{
+        display: block;
+        height: 45%;
+        width: 100%;
+        padding: 20px;
+      }
+    }
+  }
+
+  @media only screen and (min-width: 1000px) {
+
+    ::ng-deep app-line-chart{
+      display: block;
+    }
+
+    .app-container {
+      .app-content {
+        flex-direction: row;
+
+        .chart-container {
+          height: 100%;
+          width: 50%;
+        }
+        .stocks-table-container{
+          height: 100%;
+          width: 50%;
+        }
       }
     }
   }
 }
+

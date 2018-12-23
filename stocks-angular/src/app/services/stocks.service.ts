@@ -6,10 +6,11 @@ import {AppState} from '../models/app-state';
 import {AddStockRequest} from '../models/add-stock-request';
 import {Stock} from '../models/stock';
 import {StocksTableService} from './stocks-table.service';
+import {TableEventsService} from './table-events.service';
+import {ChartsEventsService} from '../shared-components/charts-module/services/charts-events.service';
 
-const httpOptions = {
-  headers: new HttpHeaders({'Content-Type': 'application/json'})
-};
+const GET_STOCK_URL = 'api/stocks';
+const ADD_STOCK_URL = 'api/addStocks';
 
 @Injectable({
   providedIn: 'root'
@@ -19,9 +20,10 @@ export class StocksService {
   private getStocksUrl = 'api/stocks';
   private addStockUrl = 'api/addStocks';
   private  state: AppState;
-  private tableChangedSubscription: Subscription;
 
-  constructor(private http: HttpClient, private stockTableService: StocksTableService) {
+  constructor(private http: HttpClient, private stockTableService: StocksTableService,
+              private eventService: TableEventsService,
+              private chartEventService: ChartsEventsService) {
     this.state = new AppState();
     this.init();
   }
@@ -29,17 +31,27 @@ export class StocksService {
   init() {
     this.setStocks();
     this.initTableService();
-    this.tableChangedSubscription = this.stockTableService.getSubject().subscribe((newStock) => {
-      this.addStock(newStock);
+    this.listenToTableEvents();
+  }
+
+  listenToTableEvents() {
+    this.eventService.getMessage().subscribe((dataObject) => {
+      if (dataObject.message === 'row-added') {
+        this.notifyOnTableEvents('row-added-db', this.addStock(dataObject.data));
+      }
+      if (dataObject.message === 'row-selected') {
+        this.chartEventService.sendMessage('row-selected',
+            {labels: null, label: dataObject.data.stock.name, values: dataObject.data.stock.prices});
+      }
     });
+  }
+
+  notifyOnTableEvents(message: string, data: any) {
+    this.eventService.sendMessage(message, data);
   }
 
   setStocks(): void {
     this.state.stocksData = this.http.get<StocksResponse>(this.getStocksUrl);
-  }
-
-  getStocks(): Observable<StocksResponse> {
-    return this.state.stocksData;
   }
 
   initTableService() {
@@ -48,10 +60,8 @@ export class StocksService {
 
   addStock(stock: Stock): Observable<StocksResponse> {
     const request = new AddStockRequest();
-    request.stock = new Stock();
-    request.stock.name = 'Coca Cola';
-    request.stock.prices = [200, 50, 800, 800, 900, 30, 150];
+    request.stock = stock;
 
-    return this.http.post<StocksResponse>(this.addStockUrl, request, httpOptions);
+    return this.http.post<StocksResponse>(this.addStockUrl, request);
   }
 }

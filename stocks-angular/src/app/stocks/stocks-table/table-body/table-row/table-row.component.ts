@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import {StocksTableService} from '../../../../services/stocks-table.service';
 
 @Component({
   selector: 'app-table-row',
@@ -7,10 +8,14 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class TableRowComponent implements OnInit {
   @Input() rowData: any;
-  constructor() { }
+  @Input() index;
+  constructor(private tableService: StocksTableService ) {
+  }
 
   ngOnInit() {
-    console.log(this.rowData);
+    if (this.tableService.selectedRow === this.index) {
+      this.onRowSelected();
+    }
   }
 
   cellMarked(index) {
@@ -23,6 +28,10 @@ export class TableRowComponent implements OnInit {
       }
     }
     return '';
+  }
+
+  onRowSelected() {
+    this.tableService.notifyOnTableEvents('row-selected', this.rowData);
   }
 
 }

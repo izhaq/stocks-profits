@@ -1,0 +1,4 @@
+<div class="table-body-container">
+    <app-table-row *ngFor="let rowData of getTableData(); let $index = index"
+                   [rowData]="rowData" [index]="$index"></app-table-row>
+</div>

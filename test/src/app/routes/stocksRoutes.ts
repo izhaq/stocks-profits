@@ -10,31 +10,16 @@ export class StockRoutes {
         app.route('/')
             .get((req: Request, res: Response) => {
                 res.status(200).send({
-                    message: 'GET request successfulll!!!!'
+                    message: 'Server is up !'
                 })
             })
 
-        // stocks
+        // get all stocks
         app.route('/api/stocks')
-            .get((req: Request, res: Response, next: NextFunction) => {
-                // middleware to make authentication
-                console.log(`Request from: ${req.originalUrl}`);
-                console.log(`Request type: ${req.method}`);
-                next();
-            }, this.stockController.getStocks);
+            .get(this.stockController.getStocks.bind(this.stockController));
 
-
-
-            // POST endpoint
+        // POST endpoint
         app.route('/api/addStocks')
-            .post(this.stockController.addNewStock);
-
-        // // Contact detail
-        // app.route('/contact/:contactId')
-        // // get specific contact
-        // .get(this.contactController.getContactWithID)
-        // .put(this.contactController.updateContact)
-        // .delete(this.contactController.deleteContact)
-
+            .post(this.stockController.addNewStock.bind(this.stockController));
     }
 }
