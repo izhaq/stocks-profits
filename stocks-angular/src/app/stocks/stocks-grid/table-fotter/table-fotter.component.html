@@ -1,0 +1,28 @@
+<div class="table-footer-container">
+    <div class="table-map-footer" *ngIf="!editMode; else editTemplate">
+        <div class="add-row-btn" (click)="switchToEdit()"><i class="fas fa-plus"></i></div>
+        <div class="table-map">
+            <div class="buy-map">
+                buy
+            </div>
+            <div class="buy-icon"></div>
+            <div class="sell-map">
+                sell
+            </div>
+            <div class="sell-icon"></div>
+        </div>
+    </div>
+</div>
+<ng-template #editTemplate>
+    <div class="insert-row-container">
+        <div class="action-panel">
+            <div class="submit-row-btn" (click)="submitRow()"><i class="fas fa-check"></i></div>
+            <div class="cancle-row-btn" (click)="cancel()"><i class="fas fa-minus"></i></div>
+        </div>
+        <div class="insert-row">
+            <div class="input-container" *ngFor="let input of newRowInputs; let i = index">
+                <input (change)="onChange($event, i)">
+            </div>
+        </div>
+    </div>
+</ng-template>

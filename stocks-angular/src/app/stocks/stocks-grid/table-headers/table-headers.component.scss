@@ -1,0 +1,24 @@
+:host{
+  display: block;
+  height: 40px;
+  width: 100%;
+  .table-header-container{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    border-bottom: .0625rem #ccc solid;
+    text-transform: uppercase;
+    font-family: BWHaasGrotesk-55Roman-Web,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    color: #555;
+    font-size: .6875rem;
+    font-weight: bold;
+
+    .header{
+      display: flex;
+      height: 100%;
+      width: calc(100% / 8);
+      align-items: center;
+      padding-left: 10px;
+    }
+  }
+}

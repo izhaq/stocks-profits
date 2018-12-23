@@ -1,0 +1,106 @@
+:host {
+  display: block;
+  height: 40px;
+  width: 100%;
+
+  .table-footer-container {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    border-top: .0625rem #ccc solid;
+    font-family: BWHaasGrotesk-55Roman-Web, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #555;
+    font-size: .6875rem;
+    position: relative;
+
+    .insert-row-container {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      position: relative;
+
+      .action-panel {
+        display: flex;
+        flex-direction: column;
+        .submit-row-btn, cancle-row-btn {
+          display: flex;
+          height: 100%;
+          align-items: center;
+          cursor: pointer;
+        }
+      }
+
+      .insert-row {
+        display: flex;
+        width: 100%;
+        height: 100%;
+
+        .input-container {
+          display: flex;
+          height: 100%;
+          width: calc(100% / 8);
+          align-items: center;
+          padding-left: 20px;
+
+          input {
+            display: flex;
+            width: 75%;
+            border-radius: 3px;
+          }
+        }
+      }
+    }
+
+    .table-map-footer {
+      display: flex;
+      height: 100%;
+      width: 100%;
+      position: relative;
+
+      .add-row-btn {
+        display: flex;
+        position: absolute;
+        height: 100%;
+        align-items: center;
+        cursor: pointer;
+      }
+
+      .table-map {
+        display: flex;
+        height: 100%;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        text-transform: uppercase;
+        font-family: BWHaasGrotesk-55Roman-Web, "Helvetica Neue", Helvetica, Arial, sans-serif;
+        color: #555;
+        font-size: .6875rem;
+        font-weight: bold;
+
+        .buy-map {
+          padding-right: 5px;
+        }
+
+        .sell-map {
+          padding-right: 5px;
+          padding-left: 15px;
+        }
+
+        .sell-icon, .buy-icon {
+          width: 20px;
+          height: 20px;
+          border-radius: 15px;
+          padding: 2px;
+        }
+
+        .sell-icon {
+          border: solid 0.5px red;
+        }
+
+        .buy-icon {
+          border: solid 0.5px green;
+        }
+      }
+    }
+  }
+}

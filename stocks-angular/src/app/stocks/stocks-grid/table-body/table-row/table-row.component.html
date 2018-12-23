@@ -1,0 +1,6 @@
+<div class="table-row-container">
+  <div  class="table-cell">{{rowData.stock.name}}</div>
+  <div class="table-cell" *ngFor="let elment of rowData.stock.prices; let i = index">
+    <div [ngClass]="cellMarked(i)">{{elment}}</div>
+  </div>
+</div>

@@ -15,7 +15,7 @@ export class StockRoutes {
             })
 
         // stocks
-        app.route('/stocks')
+        app.route('/api/stocks')
             .get((req: Request, res: Response, next: NextFunction) => {
                 // middleware to make authentication
                 console.log(`Request from: ${req.originalUrl}`);
@@ -26,7 +26,7 @@ export class StockRoutes {
 
 
             // POST endpoint
-        app.route('/addStocks')
+        app.route('/api/addStocks')
             .post(this.stockController.addNewStock);
 
         // // Contact detail

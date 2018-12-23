@@ -12,16 +12,19 @@ const stocksModel = mongoose.model('stocks', stocksSchema);
 export class StockController{
 
     public addNewStock (req: Request, res: Response) {
-        let newStock = new stocksModel({
-            name: "Amdocs",
-            prices: [500,180,260,310,40,535,695]
-        });
+        const stockToAdd = req.body.stock;
+        let newStock = new stocksModel(stockToAdd);
 
+        //console.log(stockToAdd);
+        //console.log(newStock);
         newStock.save((err, stock) => {
             if(err){
                 res.send(err);
-            }    
-            res.json(stock);
+            }
+            console.log(stock);
+            const service = new MaximumProfitStockCalculatorService();
+            const response: StocksResponse = service.calculateMaximumStocksProfit([stock]);
+            res.json(response);
         });
     }
 
@@ -30,7 +33,7 @@ export class StockController{
             if(err){
                 res.send(err);
             }
-
+            debugger;
             const service = new MaximumProfitStockCalculatorService();
             const response: StocksResponse = service.calculateMaximumStocksProfit(stocks);
             res.json(response);
