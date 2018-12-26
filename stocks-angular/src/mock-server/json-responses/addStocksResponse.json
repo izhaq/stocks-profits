@@ -1,0 +1,19 @@
+{
+  "stocks": [{
+    "stock": {
+      "name": "Amdocs",
+      "prices": [220, 300, 20, 500, 50, 500]
+    },
+    "profitPoints": [{
+      "buy": 0,
+      "sell": 1
+    }, {
+      "buy": 2,
+      "sell": 3
+    }, {
+      "buy": 4,
+      "sell": 5
+    }]
+  }
+  ]
+}

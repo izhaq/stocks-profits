@@ -1,0 +1,128 @@
+{
+  "stocks": [{
+    "stock": {
+      "name": "Amdocs",
+      "prices": [220, 300, 20, 500, 50, 500]
+    },
+    "profitPoints": [{
+      "buy": 0,
+      "sell": 1
+    }, {
+      "buy": 2,
+      "sell": 3
+    }, {
+      "buy": 4,
+      "sell": 5
+    }]
+  },
+    {
+      "stock": {
+        "name": "United Airlines",
+        "prices": [300, 10, 500, 500, 60, 1000]
+      },
+      "profitPoints": [{
+        "buy": 1,
+        "sell": 2
+      },
+        {
+          "buy": 4,
+          "sell": 5
+        }
+      ]
+    },
+    {
+      "stock": {
+        "name": "Alaska",
+        "prices": [10, 100, 200, 500, 550, 700]
+      },
+      "profitPoints": [{
+        "buy": 0,
+        "sell": 5
+      }]
+    },
+    {
+      "stock": {
+        "name": "BestBuy",
+        "prices": [220, 400, 350, 300, 50, 600]
+      },
+      "profitPoints": [{
+        "buy": 0,
+        "sell": 1
+      }, {
+        "buy": 4,
+        "sell": 5
+      }]
+    },
+    {
+      "stock": {
+        "name": "Amazon",
+        "prices": [10, 100, 2000, 2500, 2400, 5000]
+      },
+      "profitPoints": [{
+        "buy": 0,
+        "sell": 3
+      }, {
+        "buy": 4,
+        "sell": 5
+      }]
+    },
+    {
+      "stock": {
+        "name": "Google",
+        "prices": [200, 60, 500, 5000, 5000, 6000]
+      },
+      "profitPoints": [{
+        "buy": 1,
+        "sell": 3
+      },
+        {
+          "buy": 4,
+          "sell": 5
+        }
+      ]
+    },
+    {
+      "stock": {
+        "name": "Marriott",
+        "prices": [220, 300, 20, 500, 50, 10]
+      },
+      "profitPoints": [{
+        "buy": 0,
+        "sell": 1
+      }, {
+        "buy": 2,
+        "sell": 3
+      }]
+    },
+    {
+      "stock": {
+        "name": "El-Al",
+        "prices": [50, 40, 30, 30, 20, 10]
+      },
+      "profitPoints": []
+    },
+    {
+      "stock": {
+        "name": "Walmart",
+        "prices": [220, 300, 600, 500, 50, 500]
+      },
+      "profitPoints": [{
+        "buy": 0,
+        "sell": 2
+      }, {
+        "buy": 4,
+        "sell": 5
+      }]
+    },
+    {
+      "stock": {
+        "name": "Target",
+        "prices": [100, 150, 200, 250, 350, 500]
+      },
+      "profitPoints": [{
+        "buy": 0,
+        "sell": 5
+      }]
+    }
+  ]
+}
